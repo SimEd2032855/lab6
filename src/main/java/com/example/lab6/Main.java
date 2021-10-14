@@ -47,6 +47,7 @@ public class Main extends Application {
         actions.getItems().add(item4);
 
         MenuBar menuBar = new MenuBar(fichiers, actions);
+        ContextMenu contextMenu = new ContextMenu(fichiers,actions);
 
         //Toolips
         Tooltip tooltip1 = new Tooltip("Rend l'image plus claire ou plus sombre");
@@ -121,6 +122,9 @@ public class Main extends Application {
         borderPane.setCenter(imageViewDefault);
         borderPane.setRight(sliders);
         borderPane.setBottom(hBoxLabel);
+        borderPane.getCenter().setOnContextMenuRequested( event->
+                contextMenu.show(borderPane, event.getScreenX(), event.getScreenY())
+        );
 
         //set on action des items
         item1.setOnAction(event -> {
